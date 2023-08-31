@@ -22,6 +22,17 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "baseUrl": "./src",
+    "paths": {
+      "@components": ["./components"],
+      "@pages": ["./pages"],
+      "@routes": ["./routes"],
+      "@styles/*": ["./styles/*"],
+      "@assets/*": ["./assets/*"],
+      "@types": ["./types"],
+      "@utils/*": ["./utils/*"],
+      "@utils/api": ["./utils/api"],
+      "@utils/constants": ["./utils/constants"],  
+    }
   },
   "include": [
     ".eslintrc.cjs",
