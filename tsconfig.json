@@ -22,6 +22,20 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "baseUrl": "./src",
+    "paths": {
+      "@components": ["./components"],
+      "@pages": ["./pages"],
+      "@routes": ["./routes"],
+      "@styles/*": ["./styles/*"],
+      "@assets/*": ["./assets/*"],
+      "@types": ["./types"],
+      "@reduxStore/*": ["./reduxStore/*"],
+      "@services/*": ["./services/*"],
+      // "@services/*": ["./services/"],
+      "@utils/*": ["./utils/*"],
+      "@utils/api": ["./utils/api"],
+      "@utils/constants": ["./utils/constants"],  
+    }
   },
   "include": [
     ".eslintrc.cjs",

@@ -1,0 +1,5 @@
+export * from './ErrorPage/ErrorPage'
+export * from './LoginPage/LoginPage'
+export * from './MainPage/MainPage'
+export * from './RegisterPage/RegisterPage'
+export * from './SinglePostPage/SinglePostPage'
