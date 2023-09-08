@@ -1,3 +1,6 @@
 export * from './Button/Button'
 export * from './forms/index'
 export * from './Header/Header'
+export * from './PostPreview/PostPreview'
+export * from './SortBlock/SortBlock'
+export * from './TagsGroup/TagsGroup'

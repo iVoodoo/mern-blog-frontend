@@ -1,0 +1,45 @@
+@import '@styles/variables.scss';
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+
+  .main-content {
+    overflow: scroll;
+    width: 100%;
+    // text-align: center;
+    align-self: center;
+    // margin: 0 50px;
+    border-right: 1px solid $white-dark;
+
+    .sort-wrapper {
+      width: 90%;
+      margin: 30px auto;
+    }
+
+    .post-wrapper {
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      justify-content: center;
+      margin: 0 auto;
+      gap: 30px;
+
+      > :not(:last-child)::after {
+        content: '';
+        width: 100%;
+        grid-column: span 2;
+
+        border-bottom: 1px solid $white-dark;
+        margin-top: 1rem;
+      }
+    }
+  }
+  .side-content {
+    overflow: hidden; /* Скрывает всё, что не помещается в колонке */
+    height: 100vh;
+    // right: 0;
+    // position: fixed;
+  }
+}

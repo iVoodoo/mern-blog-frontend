@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom'
 
-import { AllPostsPage, ErrorPage, LoginPage, RegisterPage, SinglePostPage } from '@pages'
+import { ErrorPage, LoginPage, MainPage, RegisterPage, SinglePostPage } from '@pages'
 
 import { Root } from './Root'
 
@@ -15,7 +15,7 @@ export const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <AllPostsPage />
+            element: <MainPage />
           },
           {
             path: '/post/:id',

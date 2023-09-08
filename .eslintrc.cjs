@@ -50,6 +50,8 @@ module.exports = {
         unnamedComponents: 'arrow-function'
       }
     ],
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off',
     'import/prefer-default-export': 0,
     'react/jsx-props-no-spreading': 0,
     'react/require-default-props': 0,
