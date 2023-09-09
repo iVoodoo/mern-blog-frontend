@@ -73,10 +73,7 @@
           color: $black-light;
           font-size: 13px;
           font-weight: 300;
-
-          &::first-letter {
-            text-transform: uppercase;
-          }
+          text-transform: uppercase;
         }
       }
 

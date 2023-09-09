@@ -52,6 +52,7 @@ module.exports = {
     ],
     'jsx-a11y/click-events-have-key-events': 'off',
     'jsx-a11y/no-static-element-interactions': 'off',
+    'no-underscore-dangle': 'off',
     'import/prefer-default-export': 0,
     'react/jsx-props-no-spreading': 0,
     'react/require-default-props': 0,

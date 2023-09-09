@@ -1,4 +1,9 @@
-import { PostPreview, SortBlock } from '@components'
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+
+import { PostPreview, SortBlock, TagsGroup } from '@components'
+import { getAllPosts } from '@reduxStore/postSlice/asyncAction'
+import { RootState, useAppDispatch } from '@reduxStore/store'
 
 import styles from './MainPage.module.scss'
 
@@ -16,6 +21,13 @@ export const MainPage: React.FC = () => {
     },
     createTime: new Date('2023-08-29T13:24:03.988+00:00')
   }
+  const { data } = useSelector((state: RootState) => state.post)
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    dispatch(getAllPosts())
+  }, [])
+
+  const tags = ['tag1', 'space tag', ' really amazing tag', 'malesuada fames', 'Purus in massa', 'netus']
 
   return (
     <div className={styles.wrapper}>
@@ -24,12 +36,26 @@ export const MainPage: React.FC = () => {
           <SortBlock />
         </div>
         <div className={styles['post-wrapper']}>
-          <PostPreview {...fakePost} />
-          <PostPreview {...fakePost} />
-          <PostPreview {...fakePost} />
+          {data.map((post) => (
+            <PostPreview
+              key={post._id}
+              createTime={post.createdAt}
+              image={post.imageUrl}
+              text={post.text}
+              title={post.title}
+              tags={post.tags}
+              views={post.viewsCount}
+              author={post.author}
+            />
+          ))}
         </div>
       </div>
-      <div className={styles['side-content']}>afg</div>
+      <div className={styles['side-content']}>
+        <div className={styles['tags-wrapper']}>
+          <h3 className={styles['section-title']}>Популярные теги</h3>
+          <TagsGroup tags={tags} />
+        </div>
+      </div>
     </div>
   )
 }
