@@ -5,7 +5,6 @@
   grid-template-columns: 3fr 1fr;
 
   .main-content {
-    overflow: scroll;
     width: 100%;
     // text-align: center;
     align-self: center;
@@ -37,9 +36,17 @@
     }
   }
   .side-content {
-    overflow: hidden; /* Скрывает всё, что не помещается в колонке */
-    height: 100vh;
-    // right: 0;
-    // position: fixed;
+    position: sticky;
+    top: 0;
+    align-self: start;
+
+    .tags-wrapper {
+      margin: 10px 15px;
+    }
+  }
+
+  .section-title {
+    font-size: 24px;
+    font-weight: 300;
   }
 }

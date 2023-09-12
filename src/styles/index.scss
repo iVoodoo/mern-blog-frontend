@@ -27,7 +27,11 @@ img {
   flex-direction: row;
 }
 
+.header {
+  position: sticky;
+  top: 0;
+  align-self: start;
+}
 .main-content {
-  margin-left: 100px;
   width: 100%;
 }

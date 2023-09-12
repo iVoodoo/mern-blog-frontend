@@ -1,1 +1,19 @@
 @import '@styles/variables.scss';
+
+.tags {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 16px;
+
+  &__item {
+    padding: 10px 16px;
+    border-radius: 20px;
+    background-color: $grey-light;
+    font-size: 14px;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: $black-light;
+  }
+}

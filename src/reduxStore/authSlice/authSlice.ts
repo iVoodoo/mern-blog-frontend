@@ -1,4 +1,3 @@
-import { avatar } from '@assets/lama.jpg'
 import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from '@reduxStore/store'
 

@@ -3,10 +3,12 @@ import { useDispatch } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
 
 import auth from './authSlice/authSlice'
+import post from './postSlice/postSlice'
 
 export const store = configureStore({
   reducer: {
-    auth
+    auth,
+    post
   }
 })
 

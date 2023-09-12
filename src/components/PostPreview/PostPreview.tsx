@@ -1,19 +1,20 @@
 import { BiShow } from 'react-icons/bi'
 
+import avatar from '@assets/lama.jpg'
+
 import styles from './PostPreview.module.scss'
 
 interface PostPreviewProps {
-  id: string
   image: string
   title: string
   text: string
   tags?: string[]
   views: number
   author: {
-    name: string
-    avatar: string
+    fullName: string
+    avatarUrl: string
   }
-  createTime: Date
+  createTime: string
 }
 
 export const PostPreview: React.FC<PostPreviewProps> = ({ image, title, text, tags, views, author, createTime }) => {
@@ -21,9 +22,9 @@ export const PostPreview: React.FC<PostPreviewProps> = ({ image, title, text, ta
     <div className={styles['post-wrapper']}>
       <div className={styles['post-data']}>
         <div className={styles['post-info']}>
-          <img src={author.avatar} alt='author-avatar' className={styles['post-info__author-avatar']} />
-          <p className={styles['post-info__author-name']}>{author.name}</p>
-          <p className={styles['post-info__time-data']}>{createTime.toLocaleDateString()}</p>
+          <img src={author.avatarUrl ? author.avatarUrl : avatar} alt='author-avatar' className={styles['post-info__author-avatar']} />
+          <p className={styles['post-info__author-name']}>{author.fullName}</p>
+          <p className={styles['post-info__time-data']}>{new Date(createTime).toLocaleDateString()}</p>
         </div>
         <div className={styles['post-main']}>
           <h2 className={styles['post-main__title']}>{title}</h2>

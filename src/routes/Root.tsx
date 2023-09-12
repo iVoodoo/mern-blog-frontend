@@ -17,7 +17,9 @@ export const Root: React.FC = () => {
 
   return (
     <div className='container'>
-      <Header />
+      <div className='header'>
+        <Header />
+      </div>
       <div className='main-content'>
         <Outlet />
       </div>
