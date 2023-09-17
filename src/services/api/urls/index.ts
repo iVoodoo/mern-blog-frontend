@@ -1,5 +1,4 @@
-export * from './authLogin/authLogin'
-export * from './authMe/authMe'
-export * from './authRegister/authRegister'
+export * from './auth/index'
 export * from './posts/index'
+export * from './tags/getTags'
 export * from './upload/upload'

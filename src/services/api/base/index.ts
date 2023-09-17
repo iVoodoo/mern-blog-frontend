@@ -15,8 +15,6 @@ baseUrl.interceptors.request.use((config: AxiosRequestConfig) => {
 export const apiRequest = async (config: AxiosRequestConfig) => {
   try {
     const response = await baseUrl(config)
-    console.log(response.data)
-
     return response.data
   } catch (error) {
     console.error(error)

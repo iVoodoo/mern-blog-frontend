@@ -1,0 +1,76 @@
+@import '@styles/variables.scss';
+.info-wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  justify-items: center;
+  .info-data {
+    justify-self: left;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    .user {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      gap: 20px;
+
+      &__avatar {
+        object-fit: cover;
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+      }
+    }
+
+    .time {
+      font-size: 18px;
+      color: $black;
+    }
+
+    .views {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 20px;
+
+      &__image {
+        width: 20px;
+        height: 20px;
+        color: $black-light;
+      }
+      &__count {
+        font-weight: 300;
+        font-size: 13;
+        color: $black-light;
+      }
+    }
+
+    .tags-wrapper {
+      justify-self: start;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      column-gap: 20px;
+      row-gap: 10px;
+
+      .tag {
+        padding: 5px 8px;
+        border-radius: 10px;
+        background-color: $grey-light;
+        color: $black-light;
+        font-size: 13px;
+        font-weight: 300;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .info-image {
+    object-fit: contain;
+    width: 100%;
+    height: 400px;
+  }
+}
