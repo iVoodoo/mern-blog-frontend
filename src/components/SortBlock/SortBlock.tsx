@@ -1,5 +1,10 @@
 import clsx from 'clsx'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
+
+import { setSortedPosts } from '@reduxStore/postSlice/postSlice'
+import { RootState, useAppDispatch } from '@reduxStore/store'
+import { stringToDate } from '@utils/stringToDate'
 
 import styles from './SortBlock.module.scss'
 
@@ -10,9 +15,19 @@ const sortItems = [
 
 export const SortBlock = () => {
   const [selectedSort, setSelectedSort] = useState(0)
-
+  const { data } = useSelector((state: RootState) => state.post)
+  const dispatch = useAppDispatch()
   const onSelectSort = (id: number) => {
-    setSelectedSort(id)
+    if (id === 0) {
+      const sortedNewest = [...data.posts].sort((objA, objB) => Number(new Date(objB.createdAt)) - Number(new Date(objA.createdAt)))
+      dispatch(setSortedPosts(sortedNewest))
+      setSelectedSort(id)
+    }
+    if (id === 1) {
+      const sortedMostPopular = [...data.posts].sort((objA, objB) => Number(objB.viewsCount) - Number(objA.viewsCount))
+      dispatch(setSortedPosts(sortedMostPopular))
+      setSelectedSort(id)
+    }
   }
 
   return (

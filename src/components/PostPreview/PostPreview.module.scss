@@ -19,6 +19,7 @@
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
+      align-items: center;
       gap: 20px;
 
       &__author-avatar {
@@ -27,11 +28,22 @@
         height: 55px;
         border-radius: 50%;
       }
+
+      &__author-name {
+        font-size: 18px;
+        color: $black;
+      }
+
+      &__time-data {
+        font-size: 18px;
+        color: $black;
+      }
     }
 
     .post-main {
       margin-top: 15px;
       justify-self: start;
+      text-decoration: none;
 
       &__title {
         margin: 0;
@@ -39,6 +51,11 @@
         font-weight: 400;
         color: $black;
         margin-bottom: 15px;
+
+        transition: color ease-in 0.2s;
+        &:hover {
+          color: $grey;
+        }
       }
 
       &__text {
@@ -50,6 +67,11 @@
         font-size: 16px;
         color: $black-light;
         word-wrap: break-word;
+
+        transition: color ease-in 0.2s;
+        &:hover {
+          color: $grey;
+        }
       }
     }
 
