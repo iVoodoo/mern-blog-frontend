@@ -1,6 +1,7 @@
 import { BiShow } from 'react-icons/bi'
 
 import avatar from '@assets/lama.jpg'
+import imagePreview from '@assets/newsPreview.jpg'
 import { stringToDate } from '@utils/stringToDate'
 
 import styles from './DetailNewsInfo.module.scss'
@@ -40,7 +41,7 @@ export const DetailNewsInfo: React.FC<NewsInfo> = ({ imageUrl, tags, viewsCount,
           ))}
         </div>
       </div>
-      <img className={styles['info-image']} alt='illustration for this news' src={imageUrl} />
+      <img className={styles['info-image']} alt='illustration for this news' src={imageUrl || imagePreview} />
     </div>
   )
 }

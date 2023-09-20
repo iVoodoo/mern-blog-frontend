@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import ReactMarkdown from 'react-markdown'
 import { useParams } from 'react-router-dom'
 
 import { DetailNewsInfo } from '@components'
@@ -15,6 +16,7 @@ type PostType = {
   imageUrl: string
   createdAt: string
   author: {
+    _id: string
     fullName: string
     avatarUrl?: string
   }
@@ -26,7 +28,6 @@ export const SinglePostPage: React.FC = () => {
   const { id = '' } = useParams()
   useEffect(() => {
     getPost(id).then((data) => {
-      console.log(data)
       setPost(data)
       setIsLoading(false)
     })
@@ -46,7 +47,8 @@ export const SinglePostPage: React.FC = () => {
               tags={post?.tags}
             />
           </div>
-          <p className={styles.post__text}>{post?.text}</p>
+          <ReactMarkdown className={styles.post__text}>{post?.text}</ReactMarkdown>
+          {/* < className={styles.post__text}>{post?.text}</> */}
         </div>
       )}
     </div>

@@ -8,7 +8,6 @@
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr;
-    justify-items: center;
     row-gap: 15px;
 
     &__title {
@@ -25,12 +24,8 @@
       font-weight: 300;
       font-size: 18px;
       line-height: 1.5;
-      text-indent: 1em;
       text-align: left;
-
-      &::first-letter {
-        initial-letter: 2 2;
-      }
+      white-space: pre-wrap;
     }
   }
 }

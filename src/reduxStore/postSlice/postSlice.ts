@@ -11,6 +11,7 @@ type SinglePostType = {
   imageUrl: string
   createdAt: string
   author: {
+    _id: string
     fullName: string
     avatarUrl: string
   }

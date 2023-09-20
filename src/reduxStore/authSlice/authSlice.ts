@@ -5,6 +5,7 @@ import { fetchAuthLogin, fetchAuthMe, fetchAuthRegister } from './asyncAction'
 
 type AuthType = {
   data: {
+    _id: string
     fullName: string
     email: string
     token: string
@@ -69,6 +70,8 @@ const authSlice = createSlice({
 })
 
 export const selectIsAuth = (state: RootState) => Boolean(state.auth.data)
+
+export const selectAuthUserData = (state: RootState) => state.auth.data
 
 export const { logout } = authSlice.actions
 

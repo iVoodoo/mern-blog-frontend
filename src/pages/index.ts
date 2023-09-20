@@ -1,5 +1,6 @@
 export * from './ErrorPage/ErrorPage'
 export * from './LoginPage/LoginPage'
 export * from './MainPage/MainPage'
+export * from './NewPostPage/NewPostPage'
 export * from './RegisterPage/RegisterPage'
 export * from './SinglePostPage/SinglePostPage'
