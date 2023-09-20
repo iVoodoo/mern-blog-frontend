@@ -2,12 +2,14 @@ import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
 import { PostPreview, SortBlock, TagsGroup } from '@components'
+import { selectAuthUserData } from '@reduxStore/authSlice/authSlice'
 import { getAllPosts, getTags } from '@reduxStore/postSlice/asyncAction'
 import { RootState, useAppDispatch } from '@reduxStore/store'
 
 import styles from './MainPage.module.scss'
 
 export const MainPage: React.FC = () => {
+  const authUserData = useSelector(selectAuthUserData)
   const { data } = useSelector((state: RootState) => state.post)
 
   const dispatch = useAppDispatch()
@@ -34,6 +36,7 @@ export const MainPage: React.FC = () => {
               tags={post.tags}
               views={post.viewsCount}
               author={post.author}
+              isEditable={authUserData?._id === post.author._id}
             />
           ))}
         </div>

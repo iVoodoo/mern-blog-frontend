@@ -6,12 +6,27 @@
   padding: 20px;
   border-radius: 8px;
   border: none;
-  background-color: $black;
-  color: $white;
   font-size: 18px;
   font-weight: 300;
 
-  &:hover {
-    cursor: pointer;
+  &-dark {
+    background-color: $black;
+    color: $white;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &-light {
+    background-color: $grey-light;
+    border: 1px solid $white-dark;
+    color: $black;
+    transition: border-color 0.2s ease-in;
+
+    &:hover {
+      cursor: pointer;
+      border-color: $black-light;
+    }
   }
 }

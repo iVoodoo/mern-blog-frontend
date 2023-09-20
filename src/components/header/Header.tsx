@@ -42,10 +42,10 @@ export const Header = () => {
                 <BiLogOutCircle className={styles.item__icon} />
                 <p className={styles['item__icon-text']}>Выйти</p>
               </div>
-              <a href='/' className={styles.action}>
+              <Link to='post/new' className={styles.action}>
                 <BiEdit className={styles.item__icon} />
                 <p className={styles['item__icon-text']}>Написать статью</p>
-              </a>
+              </Link>
             </>
           )}
         </div>

@@ -6,10 +6,6 @@
 
   .main-content {
     width: 100%;
-    // text-align: center;
-    align-self: center;
-    // margin: 0 50px;
-    border-right: 1px solid $white-dark;
 
     .sort-wrapper {
       width: 90%;
@@ -39,6 +35,8 @@
     position: sticky;
     top: 0;
     align-self: start;
+    height: 100vh;
+    border-left: 1px solid $white-dark;
 
     .tags-wrapper {
       margin: 10px 15px;
