@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { getPopularTags, getPosts } from '@services/api'
+import { deletePost, getPopularTags, getPosts } from '@services/api'
 
 type PostThunkType = {
   _id: string
@@ -25,5 +25,10 @@ export const getAllPosts = createAsyncThunk<PostThunkType[]>('getPosts', async (
 
 export const getTags = createAsyncThunk<TagsType>('getTags', async (thunkAPI) => {
   const response = await getPopularTags()
+  return response
+})
+
+export const removePost = createAsyncThunk('deletePost', async (id: string, thunkAPI) => {
+  const response = await deletePost(id)
   return response
 })

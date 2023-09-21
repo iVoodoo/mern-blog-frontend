@@ -1,13 +1,13 @@
-import { useCallback, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { BiX } from 'react-icons/bi'
 import { useSelector } from 'react-redux'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import SimpleMDE from 'react-simplemde-editor'
 
 import { Button } from '@components'
 import { selectIsAuth } from '@reduxStore/authSlice/authSlice'
 import { RootState, useAppDispatch } from '@reduxStore/store'
-import { postPosts, upload } from '@services/api'
+import { getPost, patchPosts, postPosts, upload } from '@services/api'
 
 import 'easymde/dist/easymde.min.css'
 import styles from './NewPostPage.module.scss'
@@ -20,10 +20,34 @@ export const NewPostPage: React.FC = () => {
   const [text, setText] = useState('')
   const [errors, setErrors] = useState<string[]>([])
   const navigate = useNavigate()
+  const { id } = useParams()
+
+  useEffect(() => {
+    if (id) {
+      getPost(id).then((post) => {
+        console.log(post)
+        setTitle(post.title)
+        setPreviewImageUrl(post.imageUrl)
+        setTags([...post.tags])
+        setText(post.text)
+      })
+    }
+  }, [])
 
   const onChangeMde = useCallback((value: string) => {
     setText(value)
   }, [])
+
+  const names = {
+    edit: {
+      title: 'Редактирование статьи',
+      button: 'Загрузить измененную статью'
+    },
+    new: {
+      title: 'Создание нового поста',
+      button: 'Опубликовать новость'
+    }
+  }
 
   const options = useMemo(
     () =>
@@ -52,18 +76,6 @@ export const NewPostPage: React.FC = () => {
   const onSelectFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
     setFile(event.target.files?.item(0) as File)
     setPreviewImageUrl(URL.createObjectURL(event.target.files?.item(0) as File))
-    try {
-      // const formData = new FormData()
-      // formData.append('image', event.target.files?.item(0) as File)
-      // setPreviewImageUrl(event.target.files?.item(0))
-      // return formData
-      // const data = await upload(formData)
-      // const url = import.meta.env.VITE_BACKEND_BASE_URL + data.url
-      // return url
-    } catch (err) {
-      console.warn(err)
-      alert(`Ошибка при загрузке: ${err}`)
-    }
   }
 
   const onRemoveImage = () => {
@@ -102,26 +114,24 @@ export const NewPostPage: React.FC = () => {
       fileUrl = await uploadFileToServer(file as File)
     }
     try {
-      const post = await postPosts(title, text, tags, fileUrl)
-      navigate(`/post/${post._id}`)
+      if (!id) {
+        const post = await postPosts(title, text, tags, fileUrl)
+        navigate(`/post/${post._id}`)
+      } else {
+        const post = await patchPosts(id, title, text, tags, fileUrl)
+        navigate(`/post/${id}`)
+      }
     } catch (err) {
       err.response.data.forEach((item) => {
-        // console.log([]item.msg)
-
         setErrors((prevArray) => [...prevArray, item.msg])
       })
-      // err.response.data.foreach((item) => {
-      //   console.log(item.msg)
-      // })
     }
-
-    // console.log(post)
   }
   console.log(errors)
   return (
     <div className={styles.wrapper}>
       {!window.localStorage.getItem('token') && !isAuth && <Navigate to='/' />}
-      <h1 className={styles.title}>Создание нового поста</h1>
+      <h1 className={styles.title}>{id ? names.edit.title : names.new.title}</h1>
       <div className={styles['new-post']}>
         <div className={styles['new-post__title']}>
           <input
@@ -170,7 +180,7 @@ export const NewPostPage: React.FC = () => {
             ))}
           </div>
         )}
-        <Button onClick={onPublishPost} innerText='Опубликовать новость' />
+        <Button onClick={onPublishPost} innerText={id ? names.edit.button : names.new.button} />
       </div>
     </div>
   )

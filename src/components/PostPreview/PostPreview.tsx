@@ -1,8 +1,10 @@
 import { BiEditAlt, BiShow, BiX } from 'react-icons/bi'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import avatar from '@assets/lama.jpg'
 import imagePreview from '@assets/newsPreview.jpg'
+import { removePost } from '@reduxStore/postSlice/asyncAction'
+import { useAppDispatch } from '@reduxStore/store'
 import { stringToDate } from '@utils/stringToDate'
 
 import styles from './PostPreview.module.scss'
@@ -34,6 +36,17 @@ export const PostPreview: React.FC<PostPreviewProps> = ({
   createTime,
   isEditable = false
 }) => {
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+
+  const onEditPostClick = () => {
+    navigate(`/post/${id}/edit`)
+  }
+  const onDeletePostClick = () => {
+    if (window.confirm('Вы действительно хотите удалить статью?')) {
+      dispatch(removePost(id))
+    }
+  }
   return (
     <div className={styles['post-wrapper']}>
       <div className={styles['post-data']}>
@@ -45,8 +58,8 @@ export const PostPreview: React.FC<PostPreviewProps> = ({
           </time>
           {isEditable && (
             <div className={styles['action-bar']}>
-              <BiEditAlt className={styles['action-bar__icon']} />
-              <BiX className={styles['action-bar__icon']} />
+              <BiEditAlt className={styles['action-bar__icon']} onClick={onEditPostClick} />
+              <BiX className={styles['action-bar__icon']} onClick={onDeletePostClick} />
             </div>
           )}
         </div>
