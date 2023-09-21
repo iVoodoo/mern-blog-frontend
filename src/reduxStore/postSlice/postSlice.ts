@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { getAllPosts, getTags } from './asyncAction'
+import { getAllPosts, getTags, removePost } from './asyncAction'
 
 type SinglePostType = {
   _id: string
@@ -50,6 +50,10 @@ const postSlice = createSlice({
     builder.addCase(getAllPosts.rejected, (state) => {
       state.status = 'error'
       state.data.posts = []
+    })
+    builder.addCase(removePost.fulfilled, (state, payload) => {
+      state.status = 'loaded'
+      state.data.posts = [...state.data.posts.filter((post) => post._id !== payload.meta.arg)]
     })
     builder.addCase(getTags.pending, (state) => {
       state.status = 'loading'
