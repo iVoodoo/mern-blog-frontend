@@ -118,7 +118,7 @@ export const NewPostPage: React.FC = () => {
         const post = await postPosts(title, text, tags, fileUrl)
         navigate(`/post/${post._id}`)
       } else {
-        const post = await patchPosts(id, title, text, tags, fileUrl)
+        const post = await patchPosts(id, title, text, tags, fileUrl !== '' ? fileUrl : previewImageUrl)
         navigate(`/post/${id}`)
       }
     } catch (err) {

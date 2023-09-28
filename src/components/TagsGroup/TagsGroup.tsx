@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import styles from './TagsGroup.module.scss'
 
 interface TagsGroupProps {
@@ -8,9 +10,10 @@ export const TagsGroup: React.FC<TagsGroupProps> = ({ tags }) => {
   return (
     <div className={styles.tags}>
       {tags.map((item, index) => (
-        <span key={index} className={styles.tags__item}>
+        <Link className={styles.tags__item} key={index} to={`/tag/${item}`}>
           {item}
-        </span>
+          {/* <span className={styles.tags__item}></span> */}
+        </Link>
       ))}
     </div>
   )

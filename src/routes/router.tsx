@@ -18,6 +18,10 @@ export const router = createBrowserRouter([
             element: <MainPage />
           },
           {
+            path: '/tag/:tag',
+            element: <MainPage />
+          },
+          {
             path: '/post/:id',
             element: <SinglePostPage />
           },
