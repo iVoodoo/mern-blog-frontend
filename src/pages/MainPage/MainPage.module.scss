@@ -13,7 +13,7 @@
     }
 
     .post-wrapper {
-      width: 90%;
+      max-width: 900px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -28,6 +28,21 @@
 
         border-bottom: 1px solid $white-dark;
         margin-top: 1rem;
+      }
+
+      .post__tag {
+        font-weight: 400;
+        font-size: 26px;
+        & > span {
+          padding: 10px 16px;
+          border-radius: 20px;
+          background-color: $grey-light;
+          // font-size: 14px;
+          font-weight: 400;
+          text-decoration: none;
+          text-transform: uppercase;
+          color: $black-light;
+        }
       }
     }
   }

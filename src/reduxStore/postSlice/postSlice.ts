@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { getAllPosts, getTags, removePost } from './asyncAction'
+import { fetchAllPosts, fetchPostsByTag, fetchTags, removePost } from './asyncAction'
 
 type SinglePostType = {
   _id: string
@@ -17,17 +17,23 @@ type SinglePostType = {
   }
 }
 
+enum StatusOfData {
+  loading = 'LOADING',
+  loaded = 'LOADED',
+  error = 'ERROR'
+}
+
 type PostSliceType = {
   data: {
     posts: SinglePostType[]
     popularTags: string[]
   }
-  status: 'loading' | 'loaded' | 'error'
+  status: StatusOfData
 }
 
 const initialState: PostSliceType = {
   data: { posts: [], popularTags: [] },
-  status: 'loading'
+  status: StatusOfData.loading
 }
 
 const postSlice = createSlice({
@@ -39,33 +45,45 @@ const postSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
-    builder.addCase(getAllPosts.pending, (state) => {
-      state.status = 'loading'
+    builder.addCase(fetchAllPosts.pending, (state) => {
+      state.status = StatusOfData.loading
       state.data.posts = []
     })
-    builder.addCase(getAllPosts.fulfilled, (state, { payload }) => {
-      state.status = 'loaded'
+    builder.addCase(fetchAllPosts.fulfilled, (state, { payload }) => {
+      state.status = StatusOfData.loaded
       state.data.posts = payload as []
     })
-    builder.addCase(getAllPosts.rejected, (state) => {
-      state.status = 'error'
+    builder.addCase(fetchAllPosts.rejected, (state) => {
+      state.status = StatusOfData.error
       state.data.posts = []
     })
     builder.addCase(removePost.fulfilled, (state, payload) => {
-      state.status = 'loaded'
+      state.status = StatusOfData.loaded
       state.data.posts = [...state.data.posts.filter((post) => post._id !== payload.meta.arg)]
     })
-    builder.addCase(getTags.pending, (state) => {
-      state.status = 'loading'
+    builder.addCase(fetchTags.pending, (state) => {
+      state.status = StatusOfData.loading
       state.data.popularTags = []
     })
-    builder.addCase(getTags.fulfilled, (state, { payload }) => {
-      state.status = 'loaded'
+    builder.addCase(fetchTags.fulfilled, (state, { payload }) => {
+      state.status = StatusOfData.loaded
       state.data.popularTags = payload as []
     })
-    builder.addCase(getTags.rejected, (state) => {
-      state.status = 'error'
+    builder.addCase(fetchTags.rejected, (state) => {
+      state.status = StatusOfData.error
       state.data.popularTags = []
+    })
+    builder.addCase(fetchPostsByTag.pending, (state) => {
+      state.status = StatusOfData.loading
+      state.data.posts = []
+    })
+    builder.addCase(fetchPostsByTag.fulfilled, (state, { payload }) => {
+      state.status = StatusOfData.loaded
+      state.data.posts = payload as []
+    })
+    builder.addCase(fetchPostsByTag.rejected, (state) => {
+      state.status = StatusOfData.error
+      state.data.posts = []
     })
   }
 })
